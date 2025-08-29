@@ -604,6 +604,16 @@ function Battlefield:checkRequirements(player, npc, isRegistrant, trade)
         end
     end
 
+    -- Do not show battlefields with required vars if the condition is not met
+    if
+        self.requiredVar and
+        self.requiredValue
+    then
+        if self.requiredValue > player:getCharVar(self.requiredVar) then
+            return false
+        end
+    end
+
     if trade and #self.tradeItems > 0 then
         if not npcUtil.tradeHasExactly(trade, self.tradeItems) then
             return false
