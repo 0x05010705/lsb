@@ -16,6 +16,7 @@ local content = BattlefieldQuest:new({
     entryNpc         = 'MC_Entrance',
     exitNpc          = 'Memento_Circle',
     requiredKeyItems = { xi.ki.VIAL_OF_DREAM_INCENSE },
+    csParam2         = 5,
 
     questArea = xi.questLog.WINDURST,
     quest     = xi.quest.id.windurst.WAKING_DREAMS,

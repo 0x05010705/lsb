@@ -450,6 +450,8 @@ function Battlefield:new(data)
     obj.armouryCrates    = data.armouryCrates or false
     obj.experimental     = data.experimental or false
     obj.allowedAreas     = data.allowedAreas
+    obj.csParam1         = data.csParam1 and data.csParam1 or 0
+    obj.csParam2         = data.csParam2 and data.csParam2 or 0
 
     obj.sections = obj.sections or { { [obj.zoneId] = {} } }
     obj.groups   = {}
@@ -888,7 +890,7 @@ function Battlefield:onEntryEventUpdate(player, csid, option, npc)
     end
 
     local autoSkipCS = self:getLocalVar(player, 'CS') == 1 and 100 or 0
-    player:updateEvent(result, self.index, autoSkipCS, clearTime, partySize, self:checkSkipCutscene(player))
+    player:updateEvent(result, self.index, autoSkipCS, clearTime, partySize, self:checkSkipCutscene(player), self.csParam1, self.csParam2)
     player:updateEventString(name)
 
     return (status < xi.battlefield.status.LOCKED and result < xi.battlefield.returnCode.LOCKED) and 1 or 0
